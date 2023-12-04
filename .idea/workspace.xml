@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9de52532-78a9-4cd9-8ce2-0c1dad0b59fc" name="Changes" comment="Started">
+    <list default="true" id="9de52532-78a9-4cd9-8ce2-0c1dad0b59fc" name="Changes" comment="Completed carmichael totient function, modular multiplicative inverse generation and e value generation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
@@ -60,7 +60,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1701304866769</updated>
-      <workItem from="1701304867962" duration="16526000" />
+      <workItem from="1701304867962" duration="22751000" />
     </task>
     <task id="LOCAL-00001" summary="Started">
       <option name="closed" value="true" />
@@ -78,7 +78,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701408809679</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Completed carmichael totient function, modular multiplicative inverse generation and e value generation">
+      <option name="closed" value="true" />
+      <created>1701655595868</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1701655595868</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -86,6 +94,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Started" />
-    <option name="LAST_COMMIT_MESSAGE" value="Started" />
+    <MESSAGE value="Completed carmichael totient function, modular multiplicative inverse generation and e value generation" />
+    <option name="LAST_COMMIT_MESSAGE" value="Completed carmichael totient function, modular multiplicative inverse generation and e value generation" />
   </component>
 </project>
