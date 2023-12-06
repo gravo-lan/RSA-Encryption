@@ -10,11 +10,18 @@ public class Main {
         int opt = 0;
 
         System.out.println("Encrypt [1] or Decrypt [2]?");
-        try {
-            opt = scanner.nextInt();
-        }
-        catch (Exception e) {
-            System.out.println("Enter a valid number.");
+        while (opt==0) {
+            try {
+                opt = scanner.nextInt();
+            } catch (Exception e) {
+                System.out.println("Enter a valid number.");
+                scanner.nextLine();
+                continue;
+            }
+            if (!(opt==1 || opt==2)) {
+                System.out.println("Enter a valid number.");
+                scanner.nextLine();
+            }
         }
 
         switch (opt) {
@@ -91,10 +98,11 @@ public class Main {
                 System.out.println("Enter a valid key.");
                 scanner.nextLine();
             }
-        }
-        if (value.compareTo(BigInteger.ZERO)<0) {
-            System.out.println("Key must be positive");
-            System.exit(0);
+            assert value != null;
+            if (value.compareTo(BigInteger.ZERO)<0) {
+                System.out.println("Key must be positive");
+                scanner.nextLine();
+            }
         }
         return value;
     }
