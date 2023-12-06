@@ -19,55 +19,58 @@ public class Main {
 
         switch (opt) {
             case 1 -> {
+                int gen = 0;
+                System.out.println("Generate new keys [1] or use existing keys [2]?");
+                try {
+                    gen = scanner.nextInt();
+                }
+                catch (Exception e) {
+                    System.out.println("Enter a valid number.");
+                }
+                BigInteger e = null, n = null, d = null;
+                switch (gen) {
+                    case 1 -> {
+                        BigInteger p = BigInteger.probablePrime(128, new Random());
+                        BigInteger q = BigInteger.probablePrime(128, new Random());
+                        BigInteger c = p.subtract(BigInteger.ONE).multiply(q.subtract(BigInteger.ONE));
+                        n = p.multiply(q);
+                        e = genE(c);
+                        d=e.modInverse(c);
+                    }
+                    case 2 -> {
+                        n = getKey("n",scanner);
+                        e = getKey("e",scanner);
+                        d = getKey("d",scanner);
+                        for (BigInteger key : new BigInteger[]{n,e,d}) {
+                            if (key.compareTo(BigInteger.ZERO)<0) {
+                                System.out.println("Enter a valid key.");
+                                System.exit(0);
+                            }
+                        }
+                    }
+                }
                 char[] letters = message.toCharArray();
-                BigInteger[] pq = genPQ();
-                BigInteger c = pq[0].subtract(BigInteger.ONE).multiply(pq[1].subtract(BigInteger.ONE));
-                BigInteger n = pq[0].multiply(pq[1]);
-                BigInteger e = genE(c);
-                BigInteger d = e.modInverse(c);
-
                 StringBuilder result = new StringBuilder();
                 for (char l : letters) {
-                    result.append(encrypt(l,e,n));
+                    result.append(new BigInteger(String.valueOf((int)l)).modPow(e,n));
                     result.append(".");
                 }
                 System.out.println("Here is your encrypted message:\n"+ result.substring(0,result.length()-1));
                 System.out.println("Public Key n: " + n + "\nPublic Key e: " + e + "\nPrivate Key d: " + d);
             }
-            case 2 -> {
-                System.out.println("Enter key n:");
-                BigInteger n = scanner.nextBigInteger();
-                System.out.println("Enter key d:");
-                BigInteger d = scanner.nextBigInteger();
-                System.out.println(crack(message,d,n));
-
-            }
+            case 2 -> System.out.println("Here is your decrypted message:\n" + decrypt(message,scanner));
         }
     }
 
-    public static String crack(String m, BigInteger d, BigInteger n) {
+    public static String decrypt(String m, Scanner scanner) {
+        BigInteger n = getKey("n",scanner);
+        BigInteger d = getKey("d",scanner);
         String[] chars = m.split("\\.");
         StringBuilder result = new StringBuilder();
         for (String s: chars) {
-            result.append((decrypt(new BigInteger(s),d,n)));
+            result.append(new String(new BigInteger(s).modPow(d,n).toByteArray(), StandardCharsets.UTF_8));
         }
         return result.toString();
-    }
-
-    public static String decrypt(BigInteger l, BigInteger d, BigInteger n) {
-        BigInteger val = l.modPow(d,n);
-        return new String(val.toByteArray(), StandardCharsets.UTF_8);
-    }
-
-    public static BigInteger encrypt(char l, BigInteger e, BigInteger n) {
-        BigInteger x = new BigInteger(String.valueOf((int)l));
-        return x.modPow(e,n);
-    }
-
-    private static BigInteger[] genPQ() {
-        BigInteger p = BigInteger.probablePrime(128, new Random());
-        BigInteger q = BigInteger.probablePrime(128, new Random());
-        return new BigInteger[]{p,q};
     }
 
     private static BigInteger genE (BigInteger c) {
@@ -75,9 +78,24 @@ public class Main {
         while (e.compareTo(c) < 0 && !e.gcd(c).equals(BigInteger.ONE)) {
             e = e.add(BigInteger.ONE);
         }
-        if (e.compareTo(c) >= 0) {
-            System.out.println("No valid value of e found. Choose different prime numbers.");
-        }
         return e;
+    }
+
+    private static BigInteger getKey(String key, Scanner scanner) {
+        BigInteger value = null;
+        while (value == null) {
+            try {
+                System.out.print("Enter key " + key + ":");
+                value = scanner.nextBigInteger();
+            } catch (Exception e) {
+                System.out.println("Enter a valid key.");
+                scanner.nextLine();
+            }
+        }
+        if (value.compareTo(BigInteger.ZERO)<0) {
+            System.out.println("Key must be positive");
+            System.exit(0);
+        }
+        return value;
     }
 }
