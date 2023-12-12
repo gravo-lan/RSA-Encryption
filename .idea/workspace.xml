@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9de52532-78a9-4cd9-8ce2-0c1dad0b59fc" name="Changes" comment="Added encrypt/decrypt options">
+    <list default="true" id="9de52532-78a9-4cd9-8ce2-0c1dad0b59fc" name="Changes" comment="Add type validation for options">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
@@ -50,6 +50,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
+    "extract.method.default.visibility": "private",
     "git-widget-placeholder": "master",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -80,7 +81,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1701304866769</updated>
-      <workItem from="1701304867962" duration="35659000" />
+      <workItem from="1701304867962" duration="48416000" />
     </task>
     <task id="LOCAL-00001" summary="Started">
       <option name="closed" value="true" />
@@ -122,7 +123,15 @@
       <option name="project" value="LOCAL" />
       <updated>1701821225577</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Add type validation for options">
+      <option name="closed" value="true" />
+      <created>1701842420721</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1701842420721</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -144,6 +153,7 @@
     <MESSAGE value="Completed carmichael totient function, modular multiplicative inverse generation and e value generation" />
     <MESSAGE value="Finished encrypt/decrypt functions" />
     <MESSAGE value="Added encrypt/decrypt options" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added encrypt/decrypt options" />
+    <MESSAGE value="Add type validation for options" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add type validation for options" />
   </component>
 </project>

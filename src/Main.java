@@ -4,36 +4,35 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
+        String message;
+        int opt, gen;
+        /*if (args.length!=0) {
+            try {
+                if (args.length != 3) throw new IllegalArgumentException();
+                message = args[0];
+                if (args[1].length() > 1 || args[2].length() > 1) throw new IllegalArgumentException();
+                if (!Character.isDigit(args[1].charAt(0)) || !Character.isDigit(args[2].charAt(0)))
+                    throw new IllegalArgumentException();
+                opt = Integer.parseInt(args[1]);
+                gen = Integer.parseInt(args[2]);
+            } catch (IllegalArgumentException e) {
+                System.out.println("Usage: [message] [encrypt/decrypt] [new keys/existing keys]");
+            }
+        }*/
+
         System.out.println("Enter a message");
         Scanner scanner = new Scanner(System.in);
-        String message = scanner.nextLine();
-        int opt = 0;
+        message = scanner.nextLine();
+        opt = 0;
 
         System.out.println("Encrypt [1] or Decrypt [2]?");
-        while (opt==0) {
-            try {
-                opt = scanner.nextInt();
-            } catch (Exception e) {
-                System.out.println("Enter a valid number.");
-                scanner.nextLine();
-                continue;
-            }
-            if (!(opt==1 || opt==2)) {
-                System.out.println("Enter a valid number.");
-                scanner.nextLine();
-            }
-        }
+        opt = getOpt(scanner, opt);
 
         switch (opt) {
             case 1 -> {
-                int gen = 0;
+                gen = 0;
                 System.out.println("Generate new keys [1] or use existing keys [2]?");
-                try {
-                    gen = scanner.nextInt();
-                }
-                catch (Exception e) {
-                    System.out.println("Enter a valid number.");
-                }
+                gen = getOpt(scanner, gen);
                 BigInteger e = null, n = null, d = null;
                 switch (gen) {
                     case 1 -> {
@@ -69,6 +68,23 @@ public class Main {
         }
     }
 
+    private static int getOpt(Scanner scanner, int opt) {
+        while (opt==0) {
+            try {
+                opt = scanner.nextInt();
+            } catch (Exception e) {
+                System.out.println("Enter a valid number.");
+                scanner.nextLine();
+                continue;
+            }
+            if (!(opt==1 || opt==2)) {
+                System.out.println("Enter a valid number.");
+                scanner.nextLine();
+            }
+        }
+        return opt;
+    }
+
     public static String decrypt(String m, Scanner scanner) {
         BigInteger n = getKey("n",scanner);
         BigInteger d = getKey("d",scanner);
@@ -92,7 +108,7 @@ public class Main {
         BigInteger value = null;
         while (value == null) {
             try {
-                System.out.print("Enter key " + key + ":");
+                System.out.print("Enter key " + key + ": ");
                 value = scanner.nextBigInteger();
             } catch (Exception e) {
                 System.out.println("Enter a valid key.");
